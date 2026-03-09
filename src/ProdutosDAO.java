@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.sql.SQLException;
 
 
+
 public class ProdutosDAO {
     
     ResultSet resultset;
@@ -58,10 +59,39 @@ public class ProdutosDAO {
         
     }
     
-    public ArrayList<ProdutosDTO> listarProdutos(){
+public ArrayList<ProdutosDTO> listarProdutos() {
+    String sql = "SELECT * FROM produtos";
+    Connection conn = new conectaDAO().connectDB();
+    
+    // Clear the list so you don't double the items when refreshing
+    listagem.clear(); 
+
+    try {
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            ProdutosDTO produto = new ProdutosDTO();
+            
+            // Map database columns to the DTO object
+            produto.setId(rs.getInt("id"));
+            produto.setNome(rs.getString("nome"));
+            produto.setValor(rs.getInt("valor"));
+            produto.setStatus(rs.getString("status"));
+
+            // Add the filled object to the list
+            listagem.add(produto);
+        }
         
-        return listagem;
+        rs.close();
+        ps.close();
+        conn.close();
+        
+    } catch (SQLException sex) {
+        JOptionPane.showMessageDialog(null, "Erro ao listar: " + sex.getMessage());
     }
+    return listagem;
+}
     
     
     
