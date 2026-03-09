@@ -1,3 +1,5 @@
+> EDUCATIONAL-PURPOSED PROJECT
+
 # Sistema de Leilões
 
 ## Sobre o projeto
