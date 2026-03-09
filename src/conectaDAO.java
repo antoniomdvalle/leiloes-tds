@@ -18,16 +18,20 @@ import javax.swing.JOptionPane;
 public class conectaDAO {
     
     public Connection connectDB(){
-        Connection conn = null;
+        
         
         try {
-        
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=");
-            
+            String url = "jdbc:mysql://localhost/Illex_main?useSSL=false&allowPublicKeyRetrieval=true";
+            String user = "root";
+            String password = "#cart3ir4el0k4..,";
+            Connection conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Connection suceeded");
+            return conn;
         } catch (SQLException erro){
             JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
+            return null;
         }
-        return conn;
+        
     }
     
 }

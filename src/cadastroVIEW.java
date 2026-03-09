@@ -150,6 +150,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
         
         ProdutosDAO produtodao = new ProdutosDAO();
         produtodao.cadastrarProduto(produto);
+        System.out.println("Executed the signup");
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
