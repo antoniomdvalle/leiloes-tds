@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Adm
+ * @author anton
  */
 public class listagemVIEW extends javax.swing.JFrame {
 
