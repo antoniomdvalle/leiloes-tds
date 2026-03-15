@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.SQLException;
+import java.util.List;
 
 
 
@@ -113,6 +114,43 @@ public ArrayList<ProdutosDTO> listarProdutos() {
         e.printStackTrace();
     }
 
+}
+    
+    
+    public List<ProdutosDTO> listarProdutosVendidos() {
+
+    List<ProdutosDTO> lista = new ArrayList<>();
+    Connection conn = new conectaDAO().connectDB();
+
+    ResultSet rs = null;
+
+    try {
+
+        
+
+        String sql = "SELECT * FROM produtos WHERE status = 'Vendido'";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        
+        rs = stmt.executeQuery();
+
+        while(rs.next()){
+
+            ProdutosDTO p = new ProdutosDTO();
+
+            p.setId(rs.getInt("id"));
+            p.setNome(rs.getString("nome"));
+            p.setValor(rs.getInt("valor"));
+            p.setStatus(rs.getString("status"));
+
+            lista.add(p);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return lista;
 }
     
         
