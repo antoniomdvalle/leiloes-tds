@@ -93,7 +93,27 @@ public ArrayList<ProdutosDTO> listarProdutos() {
     return listagem;
 }
     
-    
+    public void venderProduto(int id) {
+
+    Connection conn = new conectaDAO().connectDB();
+
+
+    try {
+
+
+        String sql = "UPDATE produtos SET status = 'Vendido' WHERE id = ?";
+        
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        
+        stmt.setInt(1, id);
+
+        stmt.executeUpdate();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+}
     
         
 }
